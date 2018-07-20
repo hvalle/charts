@@ -158,7 +158,11 @@ spec:
         {{- end }}
         {{- if .Values.datadog.logsEnabled }}
         - hostPath:
+            {{- if .Values.datadog.logsPointerDir }}
+            path: {{ .Values.datadog.logsPointerDir }}
+            {{- else }}
             path: /opt/datadog-agent/run
+            {{- end }}
           name: pointerdir
         {{- end }}
 {{- if .Values.datadog.volumes }}
